@@ -25,14 +25,8 @@ $(call inherit-product, device/xiaomi/selene/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from our custom product configuration
-$(call inherit-product, vendor/cherish/config/common_full_phone.mk)
-TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_GAPPS_ARCH := arm64
-TARGET_INCLUDE_LIVE_WALLPAPERS := false
-TARGET_FACE_UNLOCK_SUPPORTED := true
-TARGET_SUPPORTS_QUICK_TAP := true
-TARGET_SUPPORTS_CALL_RECORDING := true
+# Inherit common Kaleidoscope configurations
+$(call inherit-product, vendor/kscope/target/product/mobile.mk)
 
 #
 # All components inherited here go to system_ext image
@@ -42,7 +36,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := selene
-PRODUCT_NAME := cherish_selene
+PRODUCT_NAME := kscope_selene
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi 10
 PRODUCT_MANUFACTURER := xiaomi
@@ -58,10 +52,3 @@ BUILD_FINGERPRINT := coral/coral:12/SP2A.220305.012/8177914:user/release-keys
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
-
-# Cherish OS Stuffs
-WITH_GMS := true
-TARGET_SUPPORTS_BLUR := true
-CHERISH_BUILD_TYPE := OFFICIAL
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.cherish.maintainer=KeongBalap
